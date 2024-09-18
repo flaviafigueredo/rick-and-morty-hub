@@ -1,0 +1,11 @@
+.header {
+    height: 15rem;
+    background-color: #0d1117;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-content .logo {
+    height: 10rem;
+}
