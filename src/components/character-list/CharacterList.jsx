@@ -1,27 +1,31 @@
 import "./styles.css" // importa o arquivo CSS
-import { useCharacters } from "../../hooks/useCharacters" // importa o hook personalizado para buscar personagens
 import { CharacterCard } from "../character-card/CharacterCard" // importa o componente de Card para exibir os personagens
+import { Instructions } from "../instructions/Instructions" // importa o componente Instructions
+
+import { Spin } from "antd" // importa o componente Spin do Ant Design para exibir o carregamento
 
 // componente que renderiza a lista de personagens
-export function CharacterList() {
-    // utiliza o hook useCharacters para buscar personagens da API e controlar estados de carregamento e erro
-    const { characters, loading, error } = useCharacters()
+export function CharacterList({ characters, loading }) {
+    // se os dados ainda estiverem sendo carregados exibe o componente de carregamento (Spin)
+    if (loading) {
+        return (
+            <div className="loading-spinner">
+                <Spin size="default" />
+            </div>
+        )
+    }
 
-    // se os dados ainda estiverem sendo carregados exibe a mensagem de carregamento
-    if (loading) return <p>Loading...</p>
-
-    // se houver algum erro na requisição exibe a mensagem de erro
-    if (error) return <p>Error: {error.message}</p>
-
-    // filtra os três primeiros personagens para exibição
-    const firstThreeCharacters = characters.slice(0, 3)
+    // se não houver personagens na tela exibe o componente de instruções
+    if (characters.length === 0) {
+        return <Instructions />
+    }
 
     return (
         // renderiza a lista de personagens em uma div com a classe character-list
         <div className="character-list">
             {
-                // mapeia os personagens filtrados e cria um componente CharacterCard para cada um
-                firstThreeCharacters.map(character => (
+                // mapeia a lsita de personagens e cria um componente CharacterCard para cada um
+                characters.map(character => (
                     <CharacterCard
                         key={character.id} // atribui uma key única a cada card
                         name={character.name} // passa o nome do personagem
