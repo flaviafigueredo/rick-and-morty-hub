@@ -1,0 +1,49 @@
+.add-character-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 20rem;
+    padding: 1rem;
+    margin: 0 auto;
+}
+
+.add-character-form .ant-input {
+    background-color: transparent;
+    border: 1px solid #ccc;
+    color: #fff;
+    padding: 0.8rem;
+}
+
+.add-character-form .ant-input::placeholder {
+    color: #aaa;
+}
+
+.add-character-form .ant-input:focus {
+    border-color: #40a9ff;
+}
+
+.add-character-form .ant-form-item {
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.add-character-form .ant-form-item-has-error .ant-input {
+    background-color: transparent !important;
+    border-color: #ff4d4f !important;
+    color: #fff !important;
+}
+
+.add-character-form .ant-btn-primary {
+    width: 100%;
+    background-color: #ff4d4f !important;
+    border-color: #ff4d4f !important;
+    color: #fff !important;
+    padding: 0.8rem;
+    font-size: 1.6rem;
+}
+
+.add-character-form .ant-btn-primary:hover {
+    background-color: #ff7875 !important;
+    border-color: #ff7875 !important;
+}
