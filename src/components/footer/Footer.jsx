@@ -8,7 +8,7 @@ const { Footer: AntFooter } = Layout
 export function Footer() {
     return (
         <AntFooter className="footer">
-            <p>© 2024 RickAndMortyHub - Todos os direitos reservados</p>
+            <p>© 2024 Rick and Morty Hub - All rights reserved</p>
         </AntFooter>
     )
 }
