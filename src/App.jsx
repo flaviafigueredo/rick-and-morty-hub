@@ -33,7 +33,7 @@ function App() {
 
   useEffect(() => {
     if (characters.length > 0) {
-      message.success("Characters loaded successfully!") // exibe uma mensagem após adicionar novos personagens
+      message.success("Characters added successfully!") // exibe uma mensagem após adicionar novos personagens
     }
   }, [characters])
 
