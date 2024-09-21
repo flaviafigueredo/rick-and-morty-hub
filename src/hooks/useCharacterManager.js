@@ -45,9 +45,6 @@ export function useCharacterManager() {
 
             // sobrescreve a lista de personagens
             setCharacters(data.results)
-
-            // exibe mensagem de sucesso
-            //message.success("Character added successfully!")
         } catch (error) {
             // mensagens de erro específicas para problemas na requisição
             if (error.response && error.response.status === 404) {
