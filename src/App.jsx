@@ -1,6 +1,6 @@
 import "./App.css" // importa os estilos personalizados para o App
 import "antd/dist/reset.css" // importa os estilos reset do Ant Design
-import { Layout, Form } from "antd" // importa componentes Layout e Form do Ant Design
+import { Layout, Form, message } from "antd" // importa componentes Layout e Form do Ant Design
 
 import { Header } from "./components/header/Header" // importa o componente Header
 import { CharacterList } from "./components/character-list/CharacterList" // importa o componente CharacterList
@@ -10,6 +10,7 @@ import { Button } from "./components/button/Button" // importa o componente Butt
 import { Footer } from "./components/footer/Footer" // importa o componente Footer
 
 import { useCharacterManager } from "./hooks/useCharacterManager" // importa o hook customizado para gerenciamento de personagens
+import { useEffect } from 'react' // importa o hook useEffect
 
 const { Content } = Layout // desestrutura o componente Content do Layout
 
@@ -30,20 +31,26 @@ function App() {
     })
   }
 
+  useEffect(() => {
+    if (characters.length > 0) {
+      message.success("Characters loaded successfully!") // exibe uma mensagem após adicionar novos personagens
+    }
+  }, [characters])
+
   return (
     <Layout className="layout"> {/* layout principal */}
       <Header /> {/* componente Header */}
       <Layout>
         <Layout>
           <Content className="content"> {/* conteúdo */}
-            <AddCharacterForm form={form} onFinish={handleFinish}> {/* componente de formulário para adicionar personagens */}              
+            <AddCharacterForm form={form} onFinish={handleFinish}> {/* componente de formulário para adicionar personagens */}
               <Form.Item
                 name="characterName" // nome do campo do formulário
                 rules={[{ required: true, message: "Please enter a character name!" }]} // regras de validação do formulário
-              >                
+              >
                 <Input placeholder="Enter character name" />
                 {/* campo de input para o nome do personagem */}
-              </Form.Item>              
+              </Form.Item>
               <Form.Item>
                 <Button type="primary" htmlType="submit"> {/* botão para enviar o formulário */}
                   Add Character
