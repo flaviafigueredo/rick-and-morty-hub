@@ -10,9 +10,14 @@ export function useCharacterManager() {
     // estado para controlar o carregamento (spinner) durante as requisições
     const [loading, setLoading] = useState(false)
 
+    // estado para atualizar a lista de personagens
+    const [addingCharacter, setAddingCharacter] = useState(false)
+
     // função para adicionar um personagem
     const addCharacter = async (name) => {
+        if (addingCharacter) return // impede múltiplas chamadas enquanto está adicionando novos personagens
         setLoading(true) // inicia o carregamento
+        setAddingCharacter(true) // inicia o processo de adição de personagens
 
         try {
             await new Promise(resolve => setTimeout(resolve, 500)) // simula um atraso de 500 milissegundos
@@ -38,7 +43,7 @@ export function useCharacterManager() {
                 return // sai da função
             }
 
-            // atualiza a lista de personagens com os dados da API
+            // sobrescreve a lista de personagens
             setCharacters(data.results)
 
             // exibe mensagem de sucesso
@@ -52,6 +57,7 @@ export function useCharacterManager() {
             }
         } finally {
             setLoading(false) // finaliza o carregamento independente de sucesso ou falha
+            setAddingCharacter(false) // finaliza o processo de adição de personagens
         }
     }
 
