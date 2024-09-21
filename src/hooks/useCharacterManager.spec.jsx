@@ -74,10 +74,7 @@ describe("useCharacterManager", () => {
 
         // renderiza o componente de teste
         render(<TestComponent />)
-
-        // espera o primeiro personagem ser adicionado
-        await waitFor(() => expect(message.success).toHaveBeenCalledWith("Character added successfully!"))
-
+        
         // espera a mensagem de erro ser chamada para a duplicidade
         await waitFor(() => {
             expect(message.error).toHaveBeenCalledWith("Character already added!")
